@@ -1,0 +1,21 @@
+# Read a file and write a modified version to a new file
+
+# Get the filename from the user
+filename = input("Enter the name of the file to read: ")
+
+# Try to open the file for reading
+try:
+    with open(filename, "r") as file:
+        # Read the contents of the file
+        contents = file.read()
+except FileNotFoundError:
+    print("Error: The file", filename, "does not exist.")
+except PermissionError:
+    print("Error: You do not have permission to read the file", filename)
+else:
+    # Modify the contents of the file
+    modified_contents = contents.replace("old", "new")
+
+    # Write the modified contents to a new file
+    with open("new_" + filename, "w") as file:
+        file.write(modified_contents)
